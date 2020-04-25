@@ -10,6 +10,9 @@ spec:
     - name: port-9092
       port: 9092
       protocol: TCP
+    - name: port-29092
+      port: 29092
+      protocol: TCP
   selector:
     app: kafka1
 ---
