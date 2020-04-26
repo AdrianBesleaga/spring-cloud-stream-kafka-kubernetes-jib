@@ -19,6 +19,6 @@ spec:
             - containerPort: 9000
           env:
             - name: ZOOKEEPER_CONNECT
-              value: zoo1:2181
+              value: zoo1:2181,zoo2:2181
             - name: KAFKA_BROKERCONNECT
-              value: kaf1:29092
+              value: kaf1:29092,kaf2:29093
