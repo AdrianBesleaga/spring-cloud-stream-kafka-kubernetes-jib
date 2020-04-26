@@ -11,6 +11,10 @@ spec:
       labels:
         app: kafka1
     spec:
+      volumes:
+        - name: kafka-persistent-storage
+          persistentVolumeClaim:
+            claimName: kafka-pv-claim
       containers:
         - name: kafka1
           image: confluentinc/cp-kafka:latest
@@ -33,6 +37,9 @@ spec:
               value: "PLAINTEXT"
             - name: KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR
               value: "1"
+          volumeMounts:
+            - name: kafka-persistent-storage
+              mountPath: "/var/kafka"
 
 ---
 apiVersion: v1
