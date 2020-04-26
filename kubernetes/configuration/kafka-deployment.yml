@@ -12,9 +12,9 @@ spec:
         app: kafka1
     spec:
       volumes:
-        - name: kafka-persistent-storage
+        - name: kafka1-persistent-storage
           persistentVolumeClaim:
-            claimName: kafka-pv-claim
+            claimName: kafka1-pv-claim
       containers:
         - name: kafka1
           image: confluentinc/cp-kafka:latest
@@ -38,8 +38,8 @@ spec:
             - name: KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR
               value: "1"
           volumeMounts:
-            - name: kafka-persistent-storage
-              mountPath: "/var/kafka"
+            - name: kafka1-persistent-storage
+              mountPath: "/var/lib/kafka/data"
 
 ---
 apiVersion: v1
@@ -55,6 +55,10 @@ spec:
       labels:
         app: kafka2
     spec:
+      volumes:
+        - name: kafka2-persistent-storage
+          persistentVolumeClaim:
+            claimName: kafka2-pv-claim
       containers:
         - name: kafka2
           image: confluentinc/cp-kafka:latest
@@ -77,3 +81,6 @@ spec:
               value: "PLAINTEXT"
             - name: KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR
               value: "1"
+          volumeMounts:
+            - name: kafka2-persistent-storage
+              mountPath: "/var/lib/kafka/data"
