@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: zoonavigator1
+spec:
+  type: LoadBalancer
+  ports:
+    - name: port-8000
+      port: 8000
+      protocol: TCP
+  selector:
+    app: zoonavigator1
